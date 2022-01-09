@@ -1,0 +1,60 @@
+#about-us {
+  margin: 4.4rem 2.05rem;
+
+  .img {
+    width: 100%;
+    height: 60vh;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .information {
+    h2 {
+      font-family: Poppins;
+      font-weight: 600;
+      font-size: 2.25rem;
+      line-height: 150%;
+      color: #9b6b4e;
+      text-align: center;
+    }
+
+    h3 {
+      font-family: Poppins;
+      font-weight: 600;
+      font-size: 1.5rem;
+      line-height: 150%;
+      color: #219773;
+    }
+
+    &__first-p {
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 1.25rem;
+      line-height: 150%;
+    }
+
+    &__second-p {
+      font-family: Poppins;
+      font-weight: 400;
+      font-size: 1.125rem;
+      line-height: 150%;
+    }
+
+    span {
+      font-weight: 700;
+      display: block;
+      text-align: center;
+      margin-top: 1.3rem;
+    }
+
+    .clients-cards {
+      margin-top: 3.875rem;
+      text-align: center;
+    }
+  }
+}
