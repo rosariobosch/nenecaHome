@@ -1,0 +1,36 @@
+footer {
+  background-color: #ffff;
+
+  .container {
+    padding: 3.25rem 6.3rem;
+
+    .row {
+      display: flex;
+
+      .col:first-child {
+        margin-right: 4.68rem;
+      }
+
+      h3 {
+        font-family: Roboto Slab;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 32px;
+      }
+
+      h4 {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+        color: #616161;
+
+        a {
+          text-decoration: none;
+          color: #616161;
+        }
+      }
+    }
+  }
+}
