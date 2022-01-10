@@ -1,0 +1,40 @@
+@import '@coreui/coreui/dist/css/coreui.min.css';
+
+.header {
+
+    width: 100%;
+    padding: 0;
+    background-color: #f4f4f4;
+    text-align: center;
+    border-bottom: none;
+
+    nav {
+        width: 100%;
+        
+        .nav-container {
+
+            justify-content: space-evenly;
+
+            .nav-links {
+
+                flex-basis: 60%;
+                justify-content: space-evenly;
+            }
+        }
+    }
+    .search-bar {
+
+        flex-basis: 25%;
+        margin: 0;
+    }
+
+    .cart {
+
+        display: flex;
+
+        .cart-icon {
+            border: none;
+            background-color: #f4f4f4;
+        }
+    }
+}
