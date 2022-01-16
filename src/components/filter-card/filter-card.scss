@@ -1,0 +1,24 @@
+.filter-card {
+
+    width: 80%;
+    height: 300px;
+    margin: 25px auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+
+    .filter-name {
+        width: 100%;
+        font-weight: 600;
+        font-size: 32px;
+        text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+        background: rgba(0, 0, 0, 0.4);
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        text-align: center;
+        padding: 10px;
+        overflow: hidden;
+    }
+}

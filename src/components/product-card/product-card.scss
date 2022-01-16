@@ -1,0 +1,24 @@
+.product-card {
+
+    width: 80%;
+    margin: 0 auto;
+    background-color: #fff;
+    color: #3A3A3A;
+    margin-top: 25px;
+    padding-bottom: 25px;
+
+    img {
+        width: 100%;
+    }
+
+    .title, .price {
+        font-size: 20px;
+        padding: 15px 20px 10px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+        color: #898989;
+        padding: 15px 0 0 20px;
+    }
+}
