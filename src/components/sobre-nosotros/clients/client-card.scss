@@ -1,0 +1,35 @@
+#client-card {
+  .container {
+    padding: 2.7rem 20%;
+    background-color: #fff;
+    width: 50%;
+    left: 0;
+    margin-right: 100%;
+
+    h4 {
+      font-family: Poppins;
+      font-weight: 400;
+      font-size: 1.5rem;
+      line-height: 135.94%;
+      text-align: center;
+      color: #272727;
+    }
+
+    .circle {
+      width: 2.5rem;
+      height: 2.5rem;
+      background-color: #9b6b4e;
+      margin: 0 auto;
+      border-radius: 100%;
+    }
+
+    p {
+      font-family: Poppins;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 135.94%;
+      text-align: center;
+      color: #000000;
+    }
+  }
+}
