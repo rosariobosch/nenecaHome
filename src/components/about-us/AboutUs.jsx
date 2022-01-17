@@ -1,11 +1,9 @@
 import React from "react";
 import Slider from "react-slick";
 import imgAboutUs from "../../assets/sobre-nosotras.png";
-import ClientCard from "./clients/ClientCard";
 import "./aboutUs.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ProductCount from "../producto/ficha-de-producto/product-count/ProductCount";
 
 export default function AboutUs() {
   const sliderSettings = {
@@ -19,11 +17,10 @@ export default function AboutUs() {
 
   return (
     <div id="about-us">
-      <ProductCount />
+      <div className="img">
+        <img src={imgAboutUs} alt="Nosotras" />
+      </div>
       <div className="container">
-        <div className="img">
-          <img src={imgAboutUs} alt="Nosotras" />
-        </div>
         <div className="information">
           <h2>Conocé un poco sobre nosotras y nuestra historia</h2>
           <p className="information__first-p">
@@ -57,25 +54,6 @@ export default function AboutUs() {
             nisi.Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et.
             Sunt qui esse pariatur duis deserunt mollit dolore cillum minim{" "}
           </p>
-          <div className="clients-cards">
-            <h2>Lo que dicen nuestros clientes</h2>
-            <div className="clients-cards__container">
-              <Slider {...sliderSettings}>
-                <ClientCard
-                  text='"Gracias, ya son parte de mi casa"'
-                  person="Flor"
-                />
-                <ClientCard
-                  text="“Mi casa ahora parece un poco más un hogar. Gracias por la buena onda!”"
-                  person="Flor"
-                />
-                <ClientCard
-                  text="“Ame cada cosa, todo super lindo, cálido, con detalles. Las felicito”"
-                  person="Flor"
-                />
-              </Slider>
-            </div>
-          </div>
         </div>
       </div>
     </div>
