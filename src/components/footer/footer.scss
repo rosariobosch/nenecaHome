@@ -1,14 +1,27 @@
 footer {
   background-color: #ffff;
 
+  p {
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #616161;
+    margin-bottom: 0;
+  }
+
   .container {
-    padding: 1.625rem 0 1.625rem 6.3rem;
+    padding: 1.625rem 0 1.625rem 1.6875rem;
 
     .row {
       display: flex;
 
       .col:first-child {
         margin-right: 4.68rem;
+      }
+
+      .col-menu {
+        display: none;
       }
 
       h3 {
@@ -25,12 +38,26 @@ footer {
         font-size: 16px;
         line-height: 150%;
         color: #616161;
+        display: flex;
+        align-items: flex-start;
 
         a {
           text-decoration: none;
           color: #616161;
+          display: flex;
+          align-items: center;
         }
       }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 1.625rem 0 1.625rem 1.4rem;
+
+    .col-menu {
+      display: block !important;
     }
   }
 }
