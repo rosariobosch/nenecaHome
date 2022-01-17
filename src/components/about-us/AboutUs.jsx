@@ -1,24 +1,12 @@
 import React from "react";
-import Slider from "react-slick";
 import imgAboutUs from "../../assets/sobre-nosotras.png";
 import "./aboutUs.scss";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 export default function AboutUs() {
-  const sliderSettings = {
-    speed: 500,
-    infinite: true,
-    arrows: false,
-    centerMode: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
   return (
     <div id="about-us">
-      <div className="img">
-        <img src={imgAboutUs} alt="Nosotras" />
+      <div className="img__container">
+        <div className="img" alt="Nosotras" />
       </div>
       <div className="container">
         <div className="information">
