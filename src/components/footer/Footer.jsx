@@ -2,12 +2,27 @@ import React from "react";
 import { FaInstagram } from "react-icons/fa";
 import { BiMap } from "react-icons/bi";
 import { FiPhone } from "react-icons/fi";
+import { AiOutlineArrowUp } from "react-icons/ai";
 import "./footer.scss";
 
 export default function Footer() {
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      behavior: "smooth",
+      top: 0,
+    });
+  };
+
   return (
     <footer>
       <div className="container">
+        <p
+          onClick={() => {
+            handleScrollToTop();
+          }}
+        >
+          <AiOutlineArrowUp /> Volver arriba
+        </p>
         <div className="row">
           <div className="col">
             <h3>Neneca Home</h3>
@@ -33,7 +48,7 @@ export default function Footer() {
             </h4>
             <h4>www.nenecahome.com</h4>
           </div>
-          <div className="col">
+          <div className="col col-menu">
             <h3>Menú</h3>
             <h4>Productos</h4>
             <h4>Preguntas frecuentes</h4>
