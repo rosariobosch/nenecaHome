@@ -8,10 +8,7 @@ footer {
     line-height: 150%;
     color: #616161;
     margin-bottom: 0;
-<<<<<<< HEAD
-=======
     cursor: pointer;
->>>>>>> footer
   }
 
   .container {
@@ -57,11 +54,13 @@ footer {
 }
 
 @media (min-width: 768px) {
-  .container {
-    padding: 1.625rem 0 1.625rem 1.4rem;
+  footer {
+    .container {
+      padding: 1.625rem 0 1.625rem 1.4rem;
 
-    .col-menu {
-      display: block !important;
+      .col-menu {
+        display: block !important;
+      }
     }
   }
 }
