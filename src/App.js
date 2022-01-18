@@ -2,6 +2,7 @@ import "./App.scss";
 import CartState from "./components/context/CartContext";
 import Footer from "./components/footer/Footer";
 import Router from "./pages/Router";
+import CardsContainer from "./components/info-cards/CardsContainer";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <CartState>
         <Router />
       </CartState>
+      <CardsContainer />
       <Footer />
     </div>
   );

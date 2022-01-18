@@ -32,15 +32,12 @@ export default function AboutUs() {
           </p>
           <h3>¿Por qué Neneca?</h3>
           <p className="information__second-p">
-            Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt
-            qui esse pariatur duis deserunt mollit dolore cillum minim tempor
-            enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut
-            voluptate aute id deserunt nisi.Aliqua id fugiat nostrud irure ex
-            duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt
-            mollit dolore cillum minim tempor enim. Elit aute irure tempor
-            cupidatat incididunt sint deserunt ut voluptate aute id deserunt
-            nisi.Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et.
-            Sunt qui esse pariatur duis deserunt mollit dolore cillum minim{" "}
+            Neneca es el apodo -que nos encanta- de una persona muy cercana a
+            nosotras y muy querida, que nos acompaño mucho en el inicio de este
+            emprendimiento. Cálida, sencilla y con mucha fuerza: así es ella y
+            eso también es lo que nos transmite su “nombre”. Con nuestro
+            emprendimiento queremos llevar productos sencillos que brinden
+            calidez y armonía a tu hogar, así nació "Neneca Home".
           </p>
         </div>
       </div>
