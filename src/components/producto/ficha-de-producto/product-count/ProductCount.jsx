@@ -25,7 +25,7 @@ export default function ProductCount(onAddItem, onChangeStock, stock = 5) {
 
   return (
     <>
-      <div>
+      <div className="buttonsContainer">
         <button
           type="button"
           disabled={cant === 0}
