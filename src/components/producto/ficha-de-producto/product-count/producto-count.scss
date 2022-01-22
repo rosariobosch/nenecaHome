@@ -1,6 +1,6 @@
 .buttonsContainer {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
 }
 
@@ -14,9 +14,20 @@
   border-radius: 100%;
   background-color: #535453;
   color: #f4f4f4;
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 300;
   border: none;
+}
+
+.number {
+  margin: 0 2rem;
+  font-size: 1rem;
+  font-family: Poppins;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.05rem;
+  text-align: center;
+  width: 10%;
 }
 
 @media (min-width: 768px) {

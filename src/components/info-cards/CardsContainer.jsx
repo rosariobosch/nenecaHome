@@ -13,7 +13,7 @@ export default function CardsContainer() {
   const sliderSettings = {
     speed: 500,
     infinite: true,
-    arrows: true,
+    arrows: false,
     slidesToShow: 4,
     slidesToScroll: 0,
     dots: false,

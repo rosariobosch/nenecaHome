@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -10,8 +11,8 @@ export default function ProductDetailContainer(props) {
   const [product, setProduct] = useState({});
   const [variaciones, setVariaciones] = useState([]);
   const [selectedVariation, setSelectedVariation] = useState(null);
-
-  const id = "61e73ec2d6d7fd618af423be"; //reemplazar por get id del router
+  const sliderRef = useRef(0);
+  const { id } = useParams();
 
   useEffect(() => {
     async function fetchData() {
@@ -41,13 +42,13 @@ export default function ProductDetailContainer(props) {
     speed: 500,
     infinite: true,
     arrows: false,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    dots: false,
     vertical: true,
     verticalSwiping: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    focusOnSelect: true,
+    dots: false,
     beforeChange: function (currentSlide, nextSlide) {
-      console.log(nextSlide);
       const nextVariation = document.querySelector(
         `[data-index='${nextSlide}']`
       );
@@ -57,6 +58,21 @@ export default function ProductDetailContainer(props) {
         (variacion) => variacion._id === idNextVariation
       );
       setSelectedVariation(currentVariation[0]);
+
+      const variations = document.querySelectorAll(
+        ".variation__container__name"
+      );
+      variations.forEach((variation) => {
+        if (variation.id === idNextVariation) {
+          variation
+            .closest(".variation__container__name")
+            .classList.add("variation__container__name--selected");
+        } else {
+          variation
+            .closest(".variation__container__name")
+            .classList.remove("variation__container__name--selected");
+        }
+      });
     },
     afterChange: function () {},
     responsive: [
@@ -64,32 +80,70 @@ export default function ProductDetailContainer(props) {
         breakpoint: 768,
         settings: {
           // centerMode: true,
+          initialSlide: 1,
           vertical: false,
           verticalSwiping: false,
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
           dots: false,
+          arrows: true,
         },
       },
       {
-        // centerMode: true,
         breakpoint: 1024,
         settings: {
+          arrows: true,
           vertical: false,
           verticalSwiping: false,
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
           dots: false,
-          // centerMode: true,
         },
       },
     ],
   };
 
+  const handleVariation = (e, variation) => {
+    const variations = document.querySelectorAll(".variation__container__name");
+    variations.forEach((variation) => {
+      variation
+        .closest(".variation__container__name")
+        .classList.remove("variation__container__name--selected");
+    });
+    e.target
+      .closest(".variation__container__name")
+      .classList.add("variation__container__name--selected");
+
+    setSelectedVariation(
+      variaciones.filter((variacion) => variacion._id === variation._id)[0]
+    );
+
+    const sliderIndex = document
+      .querySelector(`[id='${variation._id}']`)
+      .closest(".slick-slide")
+      .getAttribute("data-index");
+    console.log(sliderIndex);
+
+    sliderRef.current.slickGoTo(sliderIndex);
+
+    const imageVariations = document.querySelectorAll(".slider-image");
+    imageVariations.forEach((imageVariation) => {
+      if (imageVariation.id === variation._id) {
+        imageVariation
+          .closest(".slick-slide")
+          .classList.add("slick-active", "slick-current");
+      } else {
+        imageVariation
+          .closest(".slick-slide")
+          .classList.remove("slick-active", "slick-current");
+      }
+    });
+  };
+
   if (!loading) {
-    console.log(selectedVariation);
+    // console.log(selectedVariation);
   }
   // const {} = props;
 
@@ -99,50 +153,86 @@ export default function ProductDetailContainer(props) {
         <div>Cargando...</div>
       ) : (
         <div className="container container-fdp">
-          <h2 className="title-mobile">{`${product.nombre} ${selectedVariation.nombre}`}</h2>
-          <div className="col-images">
-            <div className="slider-container">
-              <Slider {...sliderSettings}>
-                {variaciones.map((variacion) => {
-                  return (
-                    <img
-                      className="slider-image"
-                      key={variacion._id}
-                      id={variacion._id}
-                      alt={variacion.name}
-                      src={`data:image/${variacion.image.contentType};base64,${variacion.image.data}`}
-                    />
-                  );
-                })}
-              </Slider>
+          <div className="flex-responsive">
+            <h2 className="title-mobile">{`${product.nombre} ${selectedVariation.nombre}`}</h2>
+            <div className="col-images">
+              <div className="slider-container">
+                <Slider {...sliderSettings} ref={sliderRef}>
+                  {variaciones.map((variacion) => {
+                    return (
+                      <img
+                        className="slider-image"
+                        key={variacion._id + 2}
+                        id={variacion._id}
+                        alt={variacion.name}
+                        src={`data:image/${variacion.image.contentType};base64,${variacion.image.data}`}
+                      />
+                    );
+                  })}
+                </Slider>
+              </div>
+              <div className="image-principal">
+                <img
+                  alt={selectedVariation.name}
+                  src={`data:image/${selectedVariation.image.contentType};base64,${selectedVariation.image.data}`}
+                />
+              </div>
             </div>
-            <div className="image-principal">
-              <img
-                alt={selectedVariation.name}
-                src={`data:image/${selectedVariation.image.contentType};base64,${selectedVariation.image.data}`}
-              />
+
+            <div className="col-buy-data">
+              <h2 className="title-desktop">{`${product.nombre} ${selectedVariation.nombre}`}</h2>
+              <h3 className="price">${selectedVariation.precio}</h3>
+              <div className="cant-variation">
+                <div className="selection">
+                  <h4>Cantidad:</h4>
+                  <ProductCount />
+                </div>
+                <div className="variation">
+                  <h4>Edición:</h4>
+                  <div className="variation__container">
+                    {variaciones.map((variacion) => {
+                      return (
+                        <div
+                          className="variation__container__name"
+                          key={`var${variacion._id}`}
+                          onClick={(e) => handleVariation(e, variacion)}
+                          id={`${variacion._id}`}
+                        >
+                          <p>{variacion.nombre}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+              <div className="distance">
+                <input type="text" />
+                <button></button>
+              </div>
+              <div className="buttons">
+                <button
+                  className="buyButton"
+                  //handleEvent={handleAddCart}
+                  //cant={cant}
+                  //disabled={cant === 0}
+                >
+                  Comprar
+                </button>
+                <button
+                  className="chartButton"
+                  //handleEvent={handleAddCart}
+                  //cant={cant}
+                  //disabled={cant === 0}
+                >
+                  Añadir al carrito
+                </button>
+              </div>
             </div>
           </div>
-
-          <div className="col-buy-data">
-            <h2 className="title-desktop">{`${product.nombre} ${selectedVariation.nombre}`}</h2>
-            <h3>{selectedVariation.precio}</h3>
-            <div className="selection">
-              <ProductCount />
-            </div>
-            <div className="buttons">
-              <button
-                className="buyButton"
-                //handleEvent={handleAddCart}
-                //cant={cant}
-
-                //disabled={cant === 0}
-              >
-                Añadir al carrito
-              </button>
-            </div>
+          <div className="description">
+            <h3>Descripción</h3>
+            <p>{product.descripcion}</p>
           </div>
-          <p>{product.descripcion}</p>
         </div>
       )}
     </>
