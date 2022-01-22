@@ -25,16 +25,7 @@ export default function ProductCount(onAddItem, onChangeStock, stock = 5) {
 
   return (
     <>
-      <div>
-        <button
-          type="button"
-          disabled={cant === 0}
-          className="button-count"
-          onClick={handleCant.restar}
-        >
-          -
-        </button>
-        <span className="cardTitle me-3 ms-3">{cant}</span>
+      <div className="buttonsContainer">
         <button
           type="button"
           disabled={cant === stock}
@@ -43,15 +34,15 @@ export default function ProductCount(onAddItem, onChangeStock, stock = 5) {
         >
           +
         </button>
-      </div>
-      <div className={"card__button"}>
-        {/* <ButtonItemCart
-          handleEvent={handleAddCart}
-          cant={cant}
-          text={"Agregar al carrito"}
+        <span className="number">{cant}</span>
+        <button
+          type="button"
           disabled={cant === 0}
-          className="buyButton"
-        /> */}
+          className="button-count"
+          onClick={handleCant.restar}
+        >
+          -
+        </button>
       </div>
     </>
   );
