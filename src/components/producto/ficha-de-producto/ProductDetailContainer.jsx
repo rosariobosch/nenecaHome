@@ -1,16 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ProductCount from "./product-count/ProductCount";
 import "./product-detail-container.scss";
+import { CartContext } from "../../context/CartContext";
 
 export default function ProductDetailContainer(props) {
   const [loading, setLoading] = useState(true);
-  const [product, setProduct] = useState({});
   const [variaciones, setVariaciones] = useState([]);
+  const [product, setProduct] = useState({});
+  const [cantidad, setCantidad] = useState(0);
   const [selectedVariation, setSelectedVariation] = useState(null);
+  const cartContext = useContext(CartContext);
   const sliderRef = useRef(0);
   const { id } = useParams();
 
@@ -105,6 +108,10 @@ export default function ProductDetailContainer(props) {
     ],
   };
 
+  const handleCantidad = (cantidad) => {
+    setCantidad(cantidad);
+  };
+
   const handleVariation = (e, variation) => {
     const variations = document.querySelectorAll(".variation__container__name");
     variations.forEach((variation) => {
@@ -140,6 +147,15 @@ export default function ProductDetailContainer(props) {
           .classList.remove("slick-active", "slick-current");
       }
     });
+  };
+
+  const handleAddCart = (e) => {
+    const newProduct = {
+      id: selectedVariation._id,
+      precio: selectedVariation.precio,
+      cantidad,
+    };
+    cartContext.addProduct(newProduct);
   };
 
   if (!loading) {
@@ -185,7 +201,7 @@ export default function ProductDetailContainer(props) {
               <div className="cant-variation">
                 <div className="selection">
                   <h4>Cantidad:</h4>
-                  <ProductCount />
+                  <ProductCount onAddCantidad={handleCantidad} />
                 </div>
                 <div className="variation">
                   <h4>Edición:</h4>
@@ -220,9 +236,9 @@ export default function ProductDetailContainer(props) {
                 </button>
                 <button
                   className="chartButton"
-                  //handleEvent={handleAddCart}
-                  //cant={cant}
-                  //disabled={cant === 0}
+                  onClick={handleAddCart}
+                  // cant={cant}
+                  // disabled={cant === 0}
                 >
                   Añadir al carrito
                 </button>
