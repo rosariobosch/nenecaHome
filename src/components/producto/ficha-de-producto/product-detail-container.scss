@@ -11,7 +11,7 @@
     display: flex;
     justify-content: space-between;
 
-    .chartButton,
+    .cartButton,
     .buyButton {
       width: 48%;
       background: #219773;
@@ -204,31 +204,33 @@
       }
     }
 
-    .slider-container {
-      width: 25%;
+    .col-images {
+      .slider-container {
+        width: 25%;
 
-      .slick-list {
-        // height: 40vh !important;
+        .slick-list {
+          // height: 40vh !important;
 
-        .slick-track {
-          height: 100% !important;
+          .slick-track {
+            height: 100% !important;
 
-          .slick-slide {
-            height: 100%;
-            width: 97%;
-
-            div {
+            .slick-slide {
+              height: 100%;
               width: 97%;
+
+              div {
+                width: 97%;
+              }
             }
-          }
 
-          .slick-current div {
-            // width: 97%;
-            border: 2px lightgray solid;
-          }
+            .slick-current div {
+              // width: 97%;
+              border: 2px lightgray solid;
+            }
 
-          .slick-slide > div {
-            height: 70%;
+            .slick-slide > div {
+              height: 70%;
+            }
           }
         }
       }

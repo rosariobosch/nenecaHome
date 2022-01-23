@@ -1,12 +1,12 @@
 import React, { useState, createContext, useContext } from "react";
-import { Notyf } from "notyf";
+// import { Notyf } from "notyf";
 
 export const CartContext = createContext();
 
 const CartState = (props) => {
   const [productsCart, setProducts] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  const notyf = new Notyf();
+  // const notyf = new Notyf();
 
   //precio, id, cantidad
   const addProduct = ({ id, precio, cantidad }) => {
@@ -17,10 +17,10 @@ const CartState = (props) => {
         { id, precio, cantidad },
       ]);
       setTotalPrice((prev) => prev + precio * cantidad);
-      notyf.open({
-        type: "success",
-        message: "Producto agregado al carrito con éxito!",
-      });
+      // notyf.open({
+      //   type: "success",
+      //   message: "Producto agregado al carrito con éxito!",
+      // });
     } else {
       const cartAux = productsCart.map((product) => {
         if (product.id === id) {
@@ -30,10 +30,10 @@ const CartState = (props) => {
         return product;
       });
       setProducts(cartAux);
-      notyf.open({
-        type: "warning",
-        message: "Se actualizó la cantidad seleccionada",
-      });
+      // notyf.open({
+      //   type: "warning",
+      //   message: "Se actualizó la cantidad seleccionada",
+      // });
       setTotalPrice((ant) => ant + precio * cantidad);
     }
   };

@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import ProductCount from "./product-count/ProductCount";
 import "./product-detail-container.scss";
 import { CartContext } from "../../context/CartContext";
+import CartContainer from "../../cart/CartCointainer";
 
 export default function ProductDetailContainer(props) {
   const [loading, setLoading] = useState(true);
@@ -169,6 +170,7 @@ export default function ProductDetailContainer(props) {
         <div>Cargando...</div>
       ) : (
         <div className="container container-fdp">
+          <CartContainer /> {/* //PONER ESTO EN LA HOME */}
           <div className="flex-responsive">
             <h2 className="title-mobile">{`${product.nombre} ${selectedVariation.nombre}`}</h2>
             <div className="col-images">
@@ -235,7 +237,7 @@ export default function ProductDetailContainer(props) {
                   Comprar
                 </button>
                 <button
-                  className="chartButton"
+                  className="cartButton"
                   onClick={handleAddCart}
                   // cant={cant}
                   // disabled={cant === 0}
