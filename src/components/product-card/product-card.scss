@@ -21,4 +21,9 @@
         color: #898989;
         padding: 15px 0 0 20px;
     }
+
+    @media(min-width: 650px) {
+
+        width: 50%;
+    }
 }
