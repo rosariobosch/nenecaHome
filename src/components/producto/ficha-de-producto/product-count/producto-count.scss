@@ -5,18 +5,27 @@
 }
 
 .button-count {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  position: relative;
   width: 2rem;
   height: 2rem;
   border-radius: 100%;
   background-color: #535453;
   color: #f4f4f4;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: 300;
   border: none;
+
+  p {
+    position: absolute;
+    top: -18%;
+    left: 23%;
+  }
+}
+
+.minus {
+  p {
+    left: 31%;
+  }
 }
 
 .number {

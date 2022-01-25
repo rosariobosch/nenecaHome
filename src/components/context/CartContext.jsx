@@ -8,13 +8,12 @@ const CartState = (props) => {
   const [totalPrice, setTotalPrice] = useState(0);
   // const notyf = new Notyf();
 
-  //precio, id, cantidad
-  const addProduct = ({ id, precio, cantidad }) => {
+  const addProduct = ({ id, precio, cantidad, image, nombre, variacion }) => {
     let productInCart = isInCart(id);
     if (!productInCart) {
       setProducts((productsBefore) => [
         ...productsBefore,
-        { id, precio, cantidad },
+        { id, precio, cantidad, image, nombre, variacion },
       ]);
       setTotalPrice((prev) => prev + precio * cantidad);
       // notyf.open({
@@ -40,10 +39,11 @@ const CartState = (props) => {
 
   const isInCart = (id) => productsCart.some((product) => product.id == id);
 
-  const removeItem = (id, price, cantidad) => {
-    let newArray = productsCart.filter((product) => product.product.id !== id);
+  const removeProduct = (id, price, cantidad) => {
+    let newArray = productsCart.filter((product) => product.id !== id);
     setProducts(newArray);
     setTotalPrice((prev) => prev - price * cantidad);
+    console.log(productsCart);
   };
 
   const clearCart = () => {
@@ -53,7 +53,7 @@ const CartState = (props) => {
 
   return (
     <CartContext.Provider
-      value={{ productsCart, totalPrice, addProduct, clearCart, removeItem }}
+      value={{ productsCart, totalPrice, addProduct, clearCart, removeProduct }}
     >
       {props.children}
     </CartContext.Provider>

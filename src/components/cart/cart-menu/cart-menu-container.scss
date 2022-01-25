@@ -1,0 +1,18 @@
+.offcanvas-end {
+  width: 100% !important;
+}
+
+.titulo {
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 1.625rem;
+  line-height: 1.75rem;
+  margin-top: 1rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+@media (min-width: 1024px) {
+  .offcanvas-end {
+    width: 45% !important;
+  }
+}

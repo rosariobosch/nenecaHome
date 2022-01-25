@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import Cart from "../cart/Cart";
+import Cart from "../Cart";
 import { Button } from "react-bootstrap";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import "./cart-container.scss";
+import OffcanvasHeader from "react-bootstrap/OffcanvasHeader";
+import "./cart-menu-container.scss";
 
 export default function CartContainer() {
   const [show, setShow] = useState(false);
@@ -17,7 +18,9 @@ export default function CartContainer() {
       </Button>
 
       <Offcanvas placement="end" name="end" show={show} onHide={handleClose}>
-        <Offcanvas.Header closeButton></Offcanvas.Header>
+        <OffcanvasHeader closeButton className="titulo">
+          Carrito de compras
+        </OffcanvasHeader>
         <Offcanvas.Body>
           <Cart></Cart>
         </Offcanvas.Body>

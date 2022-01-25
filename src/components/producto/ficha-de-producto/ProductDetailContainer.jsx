@@ -6,7 +6,8 @@ import "slick-carousel/slick/slick-theme.css";
 import ProductCount from "./product-count/ProductCount";
 import "./product-detail-container.scss";
 import { CartContext } from "../../context/CartContext";
-import CartContainer from "../../cart/CartCointainer";
+import CartContainer from "../../cart/cart-menu/CartMenuCointainer";
+import CurrencyFormat from "react-currency-format";
 
 export default function ProductDetailContainer(props) {
   const [loading, setLoading] = useState(true);
@@ -155,7 +156,11 @@ export default function ProductDetailContainer(props) {
       id: selectedVariation._id,
       precio: selectedVariation.precio,
       cantidad,
+      image: selectedVariation.image,
+      nombre: product.nombre,
+      variacion: selectedVariation.nombre,
     };
+    // console.log(newProduct);
     cartContext.addProduct(newProduct);
   };
 
@@ -199,7 +204,15 @@ export default function ProductDetailContainer(props) {
 
             <div className="col-buy-data">
               <h2 className="title-desktop">{`${product.nombre} ${selectedVariation.nombre}`}</h2>
-              <h3 className="price">${selectedVariation.precio}</h3>
+              <CurrencyFormat
+                className="price"
+                value={selectedVariation.precio}
+                thousandSeparator="."
+                decimalSeparator=","
+                displayType={"text"}
+                prefix={"$"}
+              ></CurrencyFormat>
+              {/* <h3 className="price">${selectedVariation.precio}</h3> */}
               <div className="cant-variation">
                 <div className="selection">
                   <h4>Cantidad:</h4>

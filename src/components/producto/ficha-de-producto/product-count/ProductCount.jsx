@@ -5,8 +5,9 @@ export default function ProductCount({
   onAddCantidad,
   onChangeStock,
   stock = 5,
+  cantidad = 0,
 }) {
-  const [cant, setCant] = useState(0);
+  const [cant, setCant] = useState(cantidad);
 
   const handleCant = {
     agregar: () => {
@@ -36,16 +37,16 @@ export default function ProductCount({
           className="button-count"
           onClick={handleCant.agregar}
         >
-          +
+          <p>+</p>
         </button>
         <span className="number">{cant}</span>
         <button
           type="button"
           disabled={cant === 0}
-          className="button-count"
+          className="button-count minus"
           onClick={handleCant.restar}
         >
-          -
+          <p>-</p>
         </button>
       </div>
     </>

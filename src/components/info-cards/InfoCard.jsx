@@ -4,7 +4,7 @@ import "./info-card.scss";
 export default function InfoCard(props) {
   const { img, title, description } = props;
   return (
-    <div className="card">
+    <div className="infoCard">
       <div className="icon">
         <img src={img} />
       </div>

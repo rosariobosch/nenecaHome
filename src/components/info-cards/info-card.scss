@@ -2,14 +2,14 @@
   margin: 4.3rem 0 4rem;
 }
 
-.card {
+.infoCard {
   display: flex;
   justify-content: center;
   align-items: center;
 
   .icon {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.5rem !important;
+    height: 2.5rem !important;
     margin-right: 1rem;
 
     img {

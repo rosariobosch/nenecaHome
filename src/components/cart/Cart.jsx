@@ -1,24 +1,14 @@
+import React, { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
+import CartProduct from "./cart-product/CartProduct";
 import styles from "./cart.scss";
-import { useState } from "react";
-// import PaymentForm from "./PaymentForm/PaymentForm";
 
-const CartContainer = () => {
+const Cart = () => {
   const { productsCart, totalPrice, removeItem, clearCart } =
     useContext(CartContext);
   const [finishBuy, setFinishBuy] = useState(false);
-  const [paymentDone, setPaymentDone] = useState(false);
-
-  const handleDeleteEvent = (id, price, cantidad) =>
-    removeItem(id, price, cantidad);
-
-  const handlePaymentDone = () => {
-    setPaymentDone(true);
-    clearCart();
-  };
 
   return (
     <div className={styles.cartContainer}>
@@ -32,10 +22,18 @@ const CartContainer = () => {
               </Link>
             </div>
           )}
+        </>
+      )}
+      {productsCart.map((product) => {
+        return <CartProduct producto={product} key={product.id} />;
+      })}
 
+      {/* <CartProductContainer products={productsCart} /> */}
+
+      {/* 
           {productsCart.length !== 0 && (
             <>
-              {/* <ItemCartList films={productsCart} onDelete={handleDeleteEvent} /> */}
+              {/* <ItemCartList films={productsCart} onDelete={handleDeleteEvent} /> }
               <div className={`${styles.totalMount} ${styles.container}`}>
                 <h4>Monto total: {totalPrice}</h4>
                 <Button
@@ -63,11 +61,9 @@ const CartContainer = () => {
                 </Link>
               </div>
             </>
-          )}
-        </>
-      )}
+          )} */}
     </div>
   );
 };
 
-export default CartContainer;
+export default Cart;
