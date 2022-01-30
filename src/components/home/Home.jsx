@@ -3,6 +3,10 @@ import './Home.scss';
 //Components
 import ProductCard from '../product-card/ProductCard';
 import NuestrosProductos from '../nuestros-productos/NuestrosProductos';
+//Images
+import productImg from '../../assets/home/product-card-1.png'
+import CardsContainer from '../info-cards/CardsContainer';
+import SliderHome from '../slider-home/SliderHome';
 const Home = () => {
 
     return(
@@ -18,7 +22,15 @@ const Home = () => {
                 <p className='home-header__text'>¡Conocé los favoritos de nuestras clientas!</p>
             </section>
             {/* TO DO: crear slider para productos destacados con las product cards */}
-            <ProductCard />
+            {/* <ProductCard
+                title="titulo"
+                subtitle="descripcion"
+                price="precio"
+                img={productImg}
+
+            /> */}
+
+            <SliderHome />
 
             <NuestrosProductos />
 
