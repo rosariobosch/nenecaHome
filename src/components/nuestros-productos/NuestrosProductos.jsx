@@ -4,6 +4,17 @@ import './nuestros-productos.scss'
 import FilterCard from '../filter-card/FilterCard'
 //Images
 import productImg from '../../assets/home/product-card-1.png'
+import alfombras from '../../assets/home/categories-alfombras.png'
+import bolsos from '../../assets/home/categories-bolsos.png'
+import deco from '../../assets/home/categories-deco.png'
+import kits from '../../assets/home/categories-kits.png'
+import mantas from '../../assets/home/categories-mantas.png'
+import mesa from '../../assets/home/categories-mesa.png'
+import percheros from '../../assets/home/categories-percheros.png'
+import pottery from '../../assets/home/categories-pottery.png'
+import velas from '../../assets/home/categories-velas.png'
+
+
 const NuestrosProductos = () => {
 
     return(
@@ -15,39 +26,39 @@ const NuestrosProductos = () => {
             </div>
             <FilterCard 
             filter="Alfombras" 
-            bgImage={productImg} 
+            bgImage={alfombras} 
             />
             <FilterCard 
             filter="Bolsos" 
-            bgImage={productImg} 
+            bgImage={bolsos} 
             />
             <FilterCard 
             filter="Mantas" 
-            bgImage={productImg} 
+            bgImage={mantas} 
             />
             <FilterCard 
             filter="Mesa" 
-            bgImage={productImg} 
+            bgImage={mesa} 
             />
             <FilterCard 
             filter="Deco" 
-            bgImage={productImg} 
+            bgImage={deco} 
             />
             <FilterCard 
             filter="Percheros" 
-            bgImage={productImg} 
+            bgImage={percheros} 
             />
             <FilterCard 
             filter="Pottery" 
-            bgImage={productImg} 
+            bgImage={pottery} 
             />
             <FilterCard 
             filter="Velas" 
-            bgImage={productImg} 
+            bgImage={velas} 
             />
             <FilterCard 
             filter="Kits" 
-            bgImage={productImg} 
+            bgImage={kits} 
             />
         </section>
     )

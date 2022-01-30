@@ -13,7 +13,7 @@ const Home = () => {
                         <h1 className='title'>Home & deco</h1>
                         <h2 className='subtitle'>Conocé nuestras velas y enamorate de sus aromas</h2>
                     </hgroup>
-                    <button className='see-more-btn'>Ver mas</button>
+                    <button className='see-more-btn'>Ver más</button>
                 </div>
                 <p className='home-header__text'>¡Conocé los favoritos de nuestras clientas!</p>
             </section>
