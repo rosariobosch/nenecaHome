@@ -1,0 +1,59 @@
+#login {
+  height: 58vh;
+
+  .container {
+    background: #f4f4f4;
+    height: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+    #loginform {
+      width: 70%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+
+      .btn-login {
+        background: #898989;
+        border-radius: 10px;
+        border: none;
+        text-transform: uppercase;
+        font-family: Poppins;
+        font-weight: 600;
+        font-size: 1.125rem;
+        line-height: 150%;
+        color: #f4f4f4;
+
+        &:hover {
+          color: none !important;
+          background-color: none !important;
+          border-color: none !important;
+        }
+
+        &:focus {
+          box-shadow: none !important;
+        }
+      }
+    }
+
+    label {
+      font-family: Poppins;
+      font-weight: 400;
+      font-size: 1.125rem;
+      line-height: 1rem;
+      color: #272727;
+    }
+
+    .form-control {
+      background-color: white;
+      border: none;
+    }
+  }
+}
+
+@media (min-width: 991px) {
+  #loginform {
+    width: 40% !important;
+  }
+}

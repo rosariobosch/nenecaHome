@@ -13,10 +13,7 @@ function App() {
       <CartState>
         <Router />
       </CartState>
-      <CardsContainer />
       <Footer />
-      <Router />
-      {/* <Footer /> */}
     </div>
   );
 }

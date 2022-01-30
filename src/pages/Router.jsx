@@ -6,7 +6,7 @@ import ProductDetailContainer from "../components/producto/ficha-de-producto/Pro
 import Cart from "../components/cart/Cart";
 // import AboutUs from "../components/sobre-nosotros/AboutUs";
 // import Footer from "../components/footer/Footer";
-import Login from "../components/login/Login";
+import Login from "../components/admin/login/Login";
 
 export default function Router() {
   return (

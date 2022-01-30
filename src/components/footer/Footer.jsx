@@ -23,7 +23,7 @@ export default function Footer() {
         >
           <AiOutlineArrowUp /> Volver arriba
         </p>
-        <div className="row">
+        <div className="row w-100">
           <div className="col">
             <h3>Neneca Home</h3>
             <h4>

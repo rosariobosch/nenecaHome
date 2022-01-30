@@ -1,12 +1,15 @@
 import React from "react";
 import imgAboutUs from "../../assets/sobre-nosotras.png";
+import CardsContainer from "../info-cards/CardsContainer";
 import "./aboutUs.scss";
 
 export default function AboutUs() {
   return (
     <div id="about-us">
-      <div className="img__container">
-        <div className="img" alt="Nosotras" />
+      <div className="container">
+        <div className="img__container">
+          <div className="img" alt="Nosotras" />
+        </div>
       </div>
       <div className="container">
         <div className="information">
@@ -40,6 +43,7 @@ export default function AboutUs() {
             calidez y armonía a tu hogar, así nació "Neneca Home".
           </p>
         </div>
+        <CardsContainer />
       </div>
     </div>
   );
