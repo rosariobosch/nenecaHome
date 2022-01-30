@@ -13,6 +13,7 @@ function App() {
       <CartState>
         <Router />
       </CartState>
+
       <Footer />
     </div>
   );
