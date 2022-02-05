@@ -45,7 +45,7 @@ const Header = () => {
                     <CNavLink href="#">Sobre Nosotras</CNavLink>
                     </CNavItem>
                     <CNavItem>
-                    <CNavLink href="#">Contacto</CNavLink>
+                    <CNavLink href="/contacto">Contacto</CNavLink>
                     </CNavItem>
                     
                 </CNavbarNav>

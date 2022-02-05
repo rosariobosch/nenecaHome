@@ -28,6 +28,24 @@
                 text-decoration: none;
                 color: #272727;
             }
+
+            p {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .map-container {
+        padding-top: 25px;
+        margin: 25px 15px;
+
+        .title {
+            color: #272727;
+            padding: 15px 0;
+        }
+
+        .map {
+            width: 100%;
         }
     }
 }
