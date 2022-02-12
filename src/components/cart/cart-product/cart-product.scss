@@ -1,5 +1,4 @@
 .product-cart-container {
-  padding: 2.38rem 1.57rem;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #e5e5e5;
@@ -10,19 +9,21 @@
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: fill;
     }
   }
 
   &__info {
     width: 65%;
     position: relative;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
 
     h2 {
       text-transform: capitalize;
       font-family: Poppins;
       font-weight: 500;
-      font-size: 1.625rem;
+      font-size: 1rem;
       line-height: 150%;
       color: #272727;
       margin-bottom: 0;
@@ -32,7 +33,7 @@
       font-family: Poppins;
       font-style: normal;
       font-weight: 300;
-      font-size: 1.125rem;
+      font-size: 0.875rem;
       line-height: 150%;
       color: #272727;
     }
@@ -40,25 +41,57 @@
     .remove {
       position: absolute;
       right: 0;
-      top: 0.5rem;
+      top: 0rem;
       cursor: pointer;
 
       &__item {
-        font-size: 1.5rem;
+        font-size: 1rem;
       }
     }
 
     .cant-price {
-      margin-top: 3rem;
+      margin-top: 1rem;
       display: flex;
       justify-content: space-between;
 
       &__price {
         font-family: Poppins;
         font-weight: 400;
-        font-size: 1.625rem;
+        font-size: 1rem;
         line-height: 150%;
         color: #272727;
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-cart-container {
+    padding: 1rem;
+
+    &__info {
+      h2 {
+        font-size: 1.625rem;
+      }
+
+      h4 {
+        font-size: 1.125rem;
+      }
+
+      .remove {
+        top: 0.5rem;
+
+        &__item {
+          font-size: 1.5rem !important;
+        }
+      }
+
+      .cant-price {
+        margin-top: 3rem;
+
+        &__price {
+          font-size: 1.625rem;
+        }
       }
     }
   }

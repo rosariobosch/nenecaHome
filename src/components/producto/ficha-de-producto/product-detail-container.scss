@@ -1,4 +1,7 @@
 .container-fdp {
+  min-height: 80vh;
+  margin-bottom: 4rem;
+
   .col-images {
     width: 100%;
 
@@ -7,13 +10,35 @@
     }
   }
 
+  .col-buy-data {
+    margin-top: 1rem;
+
+    .price {
+      font-family: Poppins;
+      font-weight: 600;
+      font-size: 1.25rem;
+      line-height: 150%;
+      color: #272727;
+    }
+
+    .cant-variation {
+      margin-top: 1rem;
+    }
+  }
+
   .buttons {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+
+    button:disabled {
+      background-color: lightgray;
+      border: none;
+      color: #f4f4f4;
+    }
 
     .cartButton,
     .buyButton {
-      width: 48%;
       background: #219773;
       border-radius: 10px;
       height: 2.5rem;
@@ -31,6 +56,12 @@
       color: #219773;
       border: 2px solid #219773;
       border-radius: 10px;
+    }
+
+    button {
+      width: 90%;
+      margin: 0 auto;
+      margin-top: 0.5rem;
     }
   }
 
@@ -80,8 +111,10 @@
       display: flex;
       flex-wrap: wrap;
       box-sizing: border-box;
+      margin-top: -0.7rem;
 
       &__name {
+        margin-top: 0.7rem;
         cursor: pointer;
         border: 1px solid lightslategray;
         border-radius: 10px;
@@ -119,6 +152,37 @@
     color: red;
   }
 
+  .slick-arrow {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border-radius: 100%;
+    position: absolute;
+    font-size: 0;
+    // padding: 0.5rem;
+  }
+
+  .slick-next {
+    right: -0.8rem;
+  }
+
+  .slick-next::before {
+    content: "ᐳ";
+    color: black;
+    font-size: 0.9rem;
+  }
+
+  .slick-prev {
+    left: -0.8rem;
+  }
+
+  .slick-prev::before {
+    content: "ᐸ";
+    color: black;
+    font-size: 0.9rem;
+  }
+
   .slider-container .slick-slide > div {
     width: 98%;
     height: auto;
@@ -129,6 +193,13 @@
       object-fit: cover;
     }
   }
+}
+.hidden {
+  display: none !important;
+}
+
+.not-hidden {
+  display: block !important;
 }
 
 @media (min-width: 1024px) {
@@ -149,30 +220,55 @@
       display: block;
     }
 
+    .cartButton,
+    .buyButton {
+      width: 48% !important;
+    }
+
+    .buttons {
+      flex-direction: row;
+
+      button {
+        margin-top: 0;
+        // width: 85%;
+      }
+    }
+
     .col-images {
       display: flex;
       height: 100%;
-      width: 65%;
-      margin-right: 4rem;
+      width: 70%;
+      // margin-right: 4rem;
 
       .slider-container {
-        margin-right: 2rem;
+        margin-right: 0.5rem;
+
+        .slick-slide {
+          max-height: 200px;
+        }
 
         .slick-slide > div {
           width: 100%;
-          height: auto;
+          // height: auto;
+          height: 100%;
           margin: 0 auto;
+          // max-height: 200px;
           img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            // max-height: 200px;
+            object-fit: fill;
           }
         }
       }
 
       .image-principal {
         display: block !important;
-        width: 73%;
+        width: 67%;
+        // height: auto;
+        height: 100%;
+        min-height: 500px;
+        max-height: 600px;
 
         img {
           width: 100%;
@@ -205,8 +301,10 @@
     }
 
     .col-images {
+      padding-left: 1rem;
+
       .slider-container {
-        width: 25%;
+        width: 23%;
 
         .slick-list {
           // height: 40vh !important;
@@ -217,6 +315,7 @@
             .slick-slide {
               height: 100%;
               width: 97%;
+              margin-bottom: 0.2rem;
 
               div {
                 width: 97%;
@@ -225,11 +324,11 @@
 
             .slick-current div {
               // width: 97%;
-              border: 2px lightgray solid;
+              outline: 2px lightgray solid;
             }
 
             .slick-slide > div {
-              height: 70%;
+              // height: 70%;
             }
           }
         }

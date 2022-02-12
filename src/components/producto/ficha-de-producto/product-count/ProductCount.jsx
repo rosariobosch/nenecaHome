@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./producto-count.scss";
 
 export default function ProductCount({
@@ -8,6 +8,10 @@ export default function ProductCount({
   cantidad = 0,
 }) {
   const [cant, setCant] = useState(cantidad);
+
+  useEffect(() => {
+    setCant(cantidad);
+  }, [cantidad]);
 
   const handleCant = {
     agregar: () => {

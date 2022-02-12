@@ -1,0 +1,14 @@
+.adminPanel {
+  height: auto;
+  position: relative;
+
+  .hidden {
+    display: none;
+  }
+
+  form {
+    margin: 2rem;
+    padding: 2rem 3rem;
+    border: 1px solid lightgray;
+  }
+}
