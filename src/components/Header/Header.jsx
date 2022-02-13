@@ -15,7 +15,7 @@ const Header = () => {
     <header className='header'>
         <CNavbar expand="lg" colorScheme="light">
         <CContainer fluid>
-            <CNavbarBrand href="#"><img src={logo} alt="Logo" /></CNavbarBrand>
+            <CNavbarBrand href="#"><CNavLink href='/'><img src={logo} alt="Logo" /></CNavLink></CNavbarBrand>
             <CNavbarToggler
             aria-label="Toggle navigation"
             aria-expanded={visible}
@@ -32,7 +32,7 @@ const Header = () => {
                             <CDropdownItem href="#">Something else here</CDropdownItem>
                         </CDropdownMenu>
                     </CDropdown>
-                    <CDropdown variant="nav-item" popper={false}>
+                    {/* <CDropdown variant="nav-item" popper={false}>
                         <CDropdownToggle>Preguntas Frecuentes</CDropdownToggle>
                         <CDropdownMenu>
                             <CDropdownItem href="#">Action</CDropdownItem>
@@ -40,7 +40,10 @@ const Header = () => {
                             <CDropdownDivider />
                             <CDropdownItem href="#">Something else here</CDropdownItem>
                         </CDropdownMenu>
-                    </CDropdown>
+                    </CDropdown> */}
+                    <CNavItem>
+                        <CNavLink href='/faqs'>Preguntas Frencuentes</CNavLink>
+                    </CNavItem>
                     <CNavItem>
                     <CNavLink href="#">Sobre Nosotras</CNavLink>
                     </CNavItem>

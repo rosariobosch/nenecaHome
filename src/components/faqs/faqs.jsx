@@ -5,19 +5,11 @@ const Faqs = () => {
 
     const [open, setOpen] = useState(false)
 
-    const handleClick = (e) => {
-        // setOpen(!open)
-        // console.log(e.target)
-        // if(e.target.parentElement.ariaExpanded === true) {
-        //     e.target.style.transform = 'rotate(225deg)'
-        // }
-    }
-
     return(
         <section className="faqs">
             <Accordion allowMultipleExpanded allowZeroExpanded>
                 <AccordionItem>
-                    <AccordionItemHeading onClick={handleClick}>
+                    <AccordionItemHeading >
                             <AccordionItemButton>
                                 <span>¿Puedo cambiar mis productos?</span>
                                 <div className={`arrow-down ${open ? 'open' : ''}`}></div>
@@ -33,7 +25,7 @@ const Faqs = () => {
                         </AccordionItemPanel>
                 </AccordionItem>
                 <AccordionItem>
-                    <AccordionItemHeading onClick={handleClick}>
+                    <AccordionItemHeading >
                             <AccordionItemButton>
                                 <span>¿Qué pasa si mi producto tiene una falla?</span>
                                 <div className={`arrow-down ${open ? 'open' : ''}`}></div>
@@ -49,7 +41,7 @@ const Faqs = () => {
                         </AccordionItemPanel>
                 </AccordionItem>
                 <AccordionItem>
-                    <AccordionItemHeading onClick={handleClick}>
+                    <AccordionItemHeading >
                             <AccordionItemButton>
                                 <span>¿Cómo es el método de envíos?</span>
                                 <div className={`arrow-down ${open ? 'open' : ''}`}></div>
@@ -65,7 +57,7 @@ const Faqs = () => {
                         </AccordionItemPanel>
                 </AccordionItem>
                 <AccordionItem>
-                    <AccordionItemHeading onClick={handleClick}>
+                    <AccordionItemHeading >
                             <AccordionItemButton>
                                 <span>¿Cuánto tarda en llegar mi pedido?</span>
                                 <div className={`arrow-down ${open ? 'open' : ''}`}></div>
@@ -81,7 +73,7 @@ const Faqs = () => {
                         </AccordionItemPanel>
                 </AccordionItem>
                 <AccordionItem>
-                    <AccordionItemHeading onClick={handleClick}>
+                    <AccordionItemHeading >
                             <AccordionItemButton>
                                 <span>¿Cuáles son los métodos de pago disponibles?</span>
                                 <div className={`arrow-down ${open ? 'open' : ''}`}></div>
