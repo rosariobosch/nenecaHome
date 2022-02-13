@@ -87,18 +87,17 @@ const NuestrosProductos = () => {
                     <button>Todo</button>
                 </div>
             <section className='productos-container'>
-                {productos && productos.map((element) => {
-                    const variaciones = element.variaciones.length > 0
-                    return(
-                        <ProductCard 
-                        title={variaciones ? element.variaciones[0].nombre : element.nombre}
-                        subtitle={element.descripcion}
-                        price={variaciones ? element.variaciones[0].precio : element.precio}
-                        img={variaciones ? element.variaciones[0].image : element.image}
-                        key={element.id}
-                    />
-                    )
-                })}
+            {productos && productos.map((element) => {
+              let name = element.nombre
+              return element.variaciones.map((element) => {
+                return <ProductCard 
+                title={name + ' ' + element.nombre}
+                subtitle={element.descripcion}
+                price={element.precio}
+                img={element.image}
+                key={element._id} />
+              })
+            })}
             </section>
             </>
         )

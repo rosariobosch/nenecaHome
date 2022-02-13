@@ -1,13 +1,10 @@
 //Styles
 import './Home.scss';
 //Components
-import ProductCard from '../product-card/ProductCard';
 import NuestrosProductos from '../nuestros-productos/NuestrosProductos';
 //Images
-import productImg from '../../assets/home/product-card-1.png'
 import CardsContainer from '../info-cards/CardsContainer';
 import SliderHome from '../slider-home/SliderHome';
-import InfoCard from '../info-cards/InfoCard';
 const Home = () => {
 
     return(

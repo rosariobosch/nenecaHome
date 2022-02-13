@@ -51,17 +51,16 @@ const SliderHome = () => {
         <div className="slider-home">
           <Slider {...sliderSettings}>
             {productos && productos.map((element) => {
-                    const variaciones = element.variaciones.length > 0
-                    return(
-                        <ProductCard 
-                        title={variaciones ? element.variaciones[0].nombre : element.nombre}
-                        subtitle={element.descripcion}
-                        price={variaciones ? element.variaciones[0].precio : element.precio}
-                        img={variaciones ? element.variaciones[0].image : element.image}
-                        key={element.id}
-                    />
-                    )
-                })}
+              let name = element.nombre
+              return element.variaciones.map((element) => {
+                return <ProductCard 
+                title={name + ' ' + element.nombre}
+                subtitle={element.descripcion}
+                price={element.precio}
+                img={element.image}
+                key={element._id} />
+              })
+            })}
           </Slider>
         </div>
       );
