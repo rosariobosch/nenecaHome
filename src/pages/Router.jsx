@@ -7,6 +7,7 @@ import Cart from "../components/cart/Cart";
 // import AboutUs from "../components/sobre-nosotros/AboutUs";
 // import Footer from "../components/footer/Footer";
 import Login from "../components/admin/login/Login";
+import OrdersContainer from "../components/orders/OrdersContainer";
 
 export default function Router() {
   return (
@@ -15,6 +16,7 @@ export default function Router() {
         <Route exact path="/nosotras" element={<AboutUs />} />
         <Route path="/producto/:id" element={<ProductDetailContainer />} />
         <Route exact path="/cart" component={Cart} />
+        <Route exact path="/pedidos" element={<OrdersContainer />} />
         <Route path="*" element={<Footer />} />
         {/* <Route exact path="/nosotras" element={<AboutUs />} /> */}
         <Route exact path="/login" element={<Login />} />

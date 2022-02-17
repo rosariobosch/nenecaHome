@@ -7,6 +7,7 @@ const api = {
     "http://backend-neneca.glitch.me/api/v1/producto/actualizar/", //:id (PUT)
   eliminarProducto: "http://backend-neneca.glitch.me/api/v1/producto/eliminar/", //:id (DELETE)
   obtenerOrdenes: "http://backend-neneca.glitch.me/api/v1/orden/obtener", // (GET)
+  obtenerOrden: "https://backend-neneca.glitch.me/api/v1/orden/obtener/", //:id (GET),
   actualizarOrden: "http://backend-neneca.glitch.me/api/v1/orden/actualizar/", //:id (PUT)
   eliminarOrden: "http://backend-neneca.glitch.me/api/v1/orden/eliminar/", //:id (DELETE)
   agregarVariacion: "http://backend-neneca.glitch.me/api/v1/variacion/agregar/", //id producto padre (POST)
@@ -122,6 +123,17 @@ const helperRequest = async function (queryParams, type) {
       method: "GET",
       headers: getHeaders(),
     })
+      .then(checkStatus)
+      .then((res) => res.json())
+      .catch((e) => {
+        e.body?.error?.message
+          ? (error = e.body.error.message)
+          : (error = e.response.data.msg);
+      });
+  }
+
+  if (type === "obtenerOrden") {
+    req = await fetch(`${api.obtenerOrden}${queryParams.id}`)
       .then(checkStatus)
       .then((res) => res.json())
       .catch((e) => {

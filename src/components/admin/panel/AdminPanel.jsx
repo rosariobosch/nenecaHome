@@ -236,7 +236,7 @@ export default function AdminPanel({ onTokenExpired }) {
               <label className="mb-1">Tags</label>
               <input name="tags" className="form-control" />
             </div>
-            <Button type="sumbite">Enviar</Button>
+            <Button type="sumbit">Enviar</Button>
           </form>
         </div>
 

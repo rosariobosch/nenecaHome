@@ -1,0 +1,141 @@
+.orders-container {
+  &__form,
+  &__status-card {
+    padding: 1rem 0.8rem;
+    background-color: #ffffff;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+
+    h2 {
+      font-family: Poppins;
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 150%;
+      color: #272727;
+    }
+
+    p {
+      font-family: Poppins;
+      font-weight: 400;
+      font-size: 0.875rem;
+      line-height: 150%;
+      color: #272727;
+      margin: 0;
+    }
+
+    .overlay {
+      border: none;
+      background: none;
+      font-family: Poppins;
+      font-weight: 300;
+      font-size: 0.75rem;
+      line-height: 150%;
+      color: #219773;
+      padding: 0;
+    }
+
+    form {
+      margin-top: 0.8rem;
+      text-align: right;
+
+      h3 {
+        font-family: Poppins;
+        font-weight: 500;
+        font-size: 1rem;
+        line-height: 150%;
+        color: #272727;
+        text-align: left;
+      }
+
+      input {
+        background: #f4f4f4;
+        padding: 0.1rem;
+      }
+
+      button {
+        background: #219773;
+        border-radius: 5px;
+        border: none;
+        padding: 0.5rem 3rem;
+        margin-top: 1rem;
+        font-family: Poppins;
+        font-weight: 600;
+        font-size: 1rem;
+        line-height: 150%;
+        color: #f4f4f4;
+      }
+    }
+  }
+
+  &__status {
+    &__img {
+      width: 100%;
+      margin-bottom: 1rem;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &-card {
+      ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+          margin-top: 0.2rem;
+          span {
+            font-weight: 600;
+          }
+          .complete {
+            color: #9b6b4e;
+          }
+          .inProcess {
+            color: #219773;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .orders-container {
+    display: flex;
+    margin-top: 3rem;
+
+    &__form,
+    &__status-card {
+      padding: 2rem 1.8rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      line-height: 2.25rem;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
+
+    &__form {
+      margin-right: 1.5rem;
+    }
+
+    &__status {
+      width: 90%;
+      margin-left: 1rem;
+
+      &__img {
+        margin-bottom: 2rem;
+      }
+
+      &-card {
+        height: 70%;
+      }
+    }
+  }
+}

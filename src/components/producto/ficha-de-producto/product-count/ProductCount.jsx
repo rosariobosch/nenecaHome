@@ -46,7 +46,7 @@ export default function ProductCount({
         <span className="number">{cant}</span>
         <button
           type="button"
-          disabled={cant === 0}
+          disabled={cant === 1}
           className="button-count minus"
           onClick={handleCant.restar}
         >
