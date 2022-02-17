@@ -1,0 +1,24 @@
+.cartProducts {
+  max-height: 60vh;
+  overflow: scroll;
+}
+.orderData {
+  margin-top: 2.75rem;
+  .price {
+    display: flex;
+    justify-content: space-between;
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 1.625;
+    line-height: 1.75rem;
+    color: #000000;
+
+    &__total {
+      font-family: Poppins;
+      font-weight: 500;
+      font-size: 1.625rem;
+      line-height: 150%;
+      color: #272727;
+    }
+  }
+}

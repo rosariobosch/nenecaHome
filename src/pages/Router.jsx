@@ -7,6 +7,7 @@ import Login from "../components/admin/login/Login";
 import Home from "../components/home/Home";
 import Faqs from "../components/faqs/faqs";
 import Contact from "../components/contact/Contact";
+import OrdersContainer from "../components/orders/OrdersContainer";
 
 export default function Router() {
   return (
@@ -16,6 +17,9 @@ export default function Router() {
         <Route path="/producto/:id" element={<ProductDetailContainer />} />
         <Route exact path="/cart" component={Cart} />
         {/* <Route path="*" element={<Footer />} /> */}
+        <Route exact path="/pedidos" element={<OrdersContainer />} />
+        <Route path="*" element={<Footer />} />
+        {/* <Route exact path="/nosotras" element={<AboutUs />} /> */}
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/" element={<Home />} />
         <Route exact path="/FAQs" element={<Faqs />} />

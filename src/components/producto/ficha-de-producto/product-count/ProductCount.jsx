@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./producto-count.scss";
 
 export default function ProductCount({
@@ -8,6 +8,10 @@ export default function ProductCount({
   cantidad = 0,
 }) {
   const [cant, setCant] = useState(cantidad);
+
+  useEffect(() => {
+    setCant(cantidad);
+  }, [cantidad]);
 
   const handleCant = {
     agregar: () => {
@@ -42,7 +46,7 @@ export default function ProductCount({
         <span className="number">{cant}</span>
         <button
           type="button"
-          disabled={cant === 0}
+          disabled={cant === 1}
           className="button-count minus"
           onClick={handleCant.restar}
         >

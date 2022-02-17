@@ -2,24 +2,24 @@
   display: flex;
   justify-content: start;
   align-items: center;
-  width: 38%;
+  width: 45%;
 }
 
 .button-count {
   position: relative;
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
   border-radius: 100%;
   background-color: #535453;
   color: #f4f4f4;
-  font-size: 1.7rem;
+  font-size: 1.4rem;
   font-weight: 300;
   border: none;
 
   p {
     position: absolute;
-    top: -18%;
-    left: 23%;
+    top: -25%;
+    left: 20%;
   }
 }
 
@@ -30,7 +30,7 @@
 }
 
 .number {
-  margin: 0 2rem;
+  margin: 0 1rem;
   font-size: 1rem;
   font-family: Poppins;
   font-weight: 500;
@@ -40,5 +40,24 @@
   width: 10%;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
+  .button-count {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.7rem;
+  }
+
+  .button-count {
+    p {
+      position: absolute;
+      top: -18%;
+      left: 23%;
+    }
+  }
+
+  .minus {
+    p {
+      left: 30%;
+    }
+  }
 }

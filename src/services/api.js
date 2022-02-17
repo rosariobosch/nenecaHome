@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const api = {
   obtenerProductos: "http://backend-neneca.glitch.me/api/v1/producto/obtener",
   agregarProducto: "http://backend-neneca.glitch.me/api/v1/producto/agregar", // (POST)
@@ -5,6 +7,7 @@ const api = {
     "http://backend-neneca.glitch.me/api/v1/producto/actualizar/", //:id (PUT)
   eliminarProducto: "http://backend-neneca.glitch.me/api/v1/producto/eliminar/", //:id (DELETE)
   obtenerOrdenes: "http://backend-neneca.glitch.me/api/v1/orden/obtener", // (GET)
+  obtenerOrden: "https://backend-neneca.glitch.me/api/v1/orden/obtener/", //:id (GET),
   actualizarOrden: "http://backend-neneca.glitch.me/api/v1/orden/actualizar/", //:id (PUT)
   eliminarOrden: "http://backend-neneca.glitch.me/api/v1/orden/eliminar/", //:id (DELETE)
   agregarVariacion: "http://backend-neneca.glitch.me/api/v1/variacion/agregar/", //id producto padre (POST)
@@ -14,14 +17,24 @@ const api = {
     "http://backend-neneca.glitch.me/api/v1/variacion/eliminar/", //:id producto padre (DELETE)
 };
 
-const getHeaders = () => {
+const getHeaders = (type = "") => {
   const token = JSON.parse(localStorage.getItem("token"));
-  const headers = {
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-    "x-access-token": `${token}`,
-    "Access-Control-Allow-Headers": "*",
-  };
+  let headers = {};
+  if (type === "variation") {
+    headers = {
+      "Content-Type": "multipart/form-data",
+      "Access-Control-Allow-Origin": "*",
+      "x-access-token": `${token}`,
+      "Access-Control-Allow-Headers": "*",
+    };
+  } else {
+    headers = {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "x-access-token": `${token}`,
+      "Access-Control-Allow-Headers": "*",
+    };
+  }
   return headers;
 };
 
@@ -54,7 +67,9 @@ const helperRequest = async function (queryParams, type) {
       .then(checkStatus)
       .then((res) => res.json())
       .catch((e) => {
-        error = e;
+        e.body?.error?.message
+          ? (error = e.body.error.message)
+          : (error = e.response.data.msg);
       });
   }
 
@@ -67,7 +82,9 @@ const helperRequest = async function (queryParams, type) {
       .then(checkStatus)
       .then((res) => res.json())
       .catch((e) => {
-        error = e;
+        e.body?.error?.message
+          ? (error = e.body.error.message)
+          : (error = e.response.data.msg);
       });
   }
 
@@ -80,7 +97,9 @@ const helperRequest = async function (queryParams, type) {
       .then(checkStatus)
       .then((res) => res.json())
       .catch((e) => {
-        error = e;
+        e.body?.error?.message
+          ? (error = e.body.error.message)
+          : (error = e.response.data.msg);
       });
   }
 
@@ -93,7 +112,9 @@ const helperRequest = async function (queryParams, type) {
       .then(checkStatus)
       .then((res) => res.json())
       .catch((e) => {
-        error = e;
+        e.body?.error?.message
+          ? (error = e.body.error.message)
+          : (error = e.response.data.msg);
       });
   }
 
@@ -105,7 +126,20 @@ const helperRequest = async function (queryParams, type) {
       .then(checkStatus)
       .then((res) => res.json())
       .catch((e) => {
-        error = e;
+        e.body?.error?.message
+          ? (error = e.body.error.message)
+          : (error = e.response.data.msg);
+      });
+  }
+
+  if (type === "obtenerOrden") {
+    req = await fetch(`${api.obtenerOrden}${queryParams.id}`)
+      .then(checkStatus)
+      .then((res) => res.json())
+      .catch((e) => {
+        e.body?.error?.message
+          ? (error = e.body.error.message)
+          : (error = e.response.data.msg);
       });
   }
 
@@ -118,7 +152,9 @@ const helperRequest = async function (queryParams, type) {
       .then(checkStatus)
       .then((res) => res.json())
       .catch((e) => {
-        error = e;
+        e.body?.error?.message
+          ? (error = e.body.error.message)
+          : (error = e.response.data.msg);
       });
   }
 
@@ -130,33 +166,44 @@ const helperRequest = async function (queryParams, type) {
       .then(checkStatus)
       .then((res) => res.json())
       .catch((e) => {
-        error = e;
+        e.body?.error?.message
+          ? (error = e.body.error.message)
+          : (error = e.response.data.msg);
       });
   }
 
   if (type === "agregarVariacion") {
-    req = await fetch(`${api.agregarVariacion}${queryParams.id}`, {
-      method: "POST",
-      headers: getHeaders(),
-      body,
-    })
+    console.log(queryParams);
+    console.log(getHeaders("variation"));
+    req = await axios
+      .post(`${api.agregarVariacion}${queryParams.get("id")}`, queryParams, {
+        headers: getHeaders("variation"),
+      })
+      .then((res) => {
+        console.log(res.status);
+      })
       .then(checkStatus)
       .then((res) => res.json())
       .catch((e) => {
-        error = e;
+        console.log("error en api", e.response);
+        if (e.body?.error?.message) error = e.body.error.message;
+        else if (e.response?.data?.msg) error = e.response?.data?.msg;
+        else if (e.response?.data?.error.message)
+          error = e.response.data.error.message;
       });
   }
 
   if (type === "actualizarVariacion") {
-    req = await fetch(`${api.actualizarVariacion}${queryParams.id}`, {
-      method: "PUT",
-      headers: getHeaders(),
-      body,
-    })
+    req = await axios
+      .post(`${api.agregarVariacion}${queryParams.get("id")}`, queryParams, {
+        headers: getHeaders("variation"),
+      })
       .then(checkStatus)
       .then((res) => res.json())
       .catch((e) => {
-        error = e;
+        e.body?.error?.message
+          ? (error = e.body.error.message)
+          : (error = e.response.data.msg);
       });
   }
 
@@ -168,7 +215,10 @@ const helperRequest = async function (queryParams, type) {
       .then(checkStatus)
       .then((res) => res.json())
       .catch((e) => {
-        error = e;
+        console.log(e.body.error.message);
+        e.body?.error?.message
+          ? (error = e.body.error.message)
+          : (error = e.response.data.msg);
       });
   }
 

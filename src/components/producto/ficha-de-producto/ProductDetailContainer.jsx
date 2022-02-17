@@ -8,12 +8,15 @@ import "./product-detail-container.scss";
 import { CartContext } from "../../context/CartContext";
 import CartContainer from "../../cart/cart-menu/CartMenuCointainer";
 import CurrencyFormat from "react-currency-format";
+import { ProgressBar } from "react-bootstrap";
+import { Prev } from "react-bootstrap/esm/PageItem";
 
 export default function ProductDetailContainer(props) {
   const [loading, setLoading] = useState(true);
+  const [porcentaje, setPorcentaje] = useState(1);
   const [variaciones, setVariaciones] = useState([]);
   const [product, setProduct] = useState({});
-  const [cantidad, setCantidad] = useState(0);
+  const [cantidad, setCantidad] = useState(1);
   const [selectedVariation, setSelectedVariation] = useState(null);
   const cartContext = useContext(CartContext);
   const sliderRef = useRef(0);
@@ -28,8 +31,22 @@ export default function ProductDetailContainer(props) {
       setSelectedVariation(variaciones[0]); //Asigna primer variacion por default
       setLoading(false);
     }
-
     fetchData();
+
+    // setTimeout(() => {
+    //   while (loading) {
+    //     setPorcentaje((prev) => prev + 1);
+    //   }
+    //   setPorcentaje(100);
+
+    //   // for (let i = 0; i < 98; i++) {
+    //   //   setPorcentaje(i);
+    //   //   if (!loading) {
+    //   //     setPorcentaje(100);
+    //   //     clearTimeout();
+    //   //   }
+    //   // }
+    // }, 1000);
   }, []);
 
   const getGeneralProductData = async () => {
@@ -42,42 +59,55 @@ export default function ProductDetailContainer(props) {
 
   //VER COMO SACAR SLIDER SETTINGS PARA AFUERA DEL COMPONENTE
 
+  const ArrowLeft = (props) => <button {...props} className={"prev"} />;
+  const ArrowRight = (props) => <button {...props} className={"next"} />;
+
   // SLIDER SETTINGS
   const sliderSettings = {
     speed: 500,
-    infinite: true,
+    infinite: variaciones.length > 3,
+    // infinite: true,
     arrows: false,
     vertical: true,
+    focusOnSelect: true,
+    // prevArrow: <ArrowLeft />,
+    // nextArrow: <ArrowRight />,
+    // fade: true,
     verticalSwiping: true,
     slidesToShow: 3,
     slidesToScroll: 1,
     focusOnSelect: true,
     dots: false,
     beforeChange: function (currentSlide, nextSlide) {
-      const nextVariation = document.querySelector(
-        `[data-index='${nextSlide}']`
-      );
+      if (variaciones.length > 3) {
+        const nextVariation = document.querySelector(
+          `[data-index='${nextSlide}']`
+        );
 
-      const idNextVariation = nextVariation.children[0].children[0].id; //Ver si existe algun metodo mas facil para llegar al
-      let currentVariation = variaciones.filter(
-        (variacion) => variacion._id === idNextVariation
-      );
-      setSelectedVariation(currentVariation[0]);
+        const idNextVariation = nextVariation.children[0].children[0].id; //Ver si existe algun metodo mas facil para llegar al
 
-      const variations = document.querySelectorAll(
-        ".variation__container__name"
-      );
-      variations.forEach((variation) => {
-        if (variation.id === idNextVariation) {
-          variation
-            .closest(".variation__container__name")
-            .classList.add("variation__container__name--selected");
-        } else {
-          variation
-            .closest(".variation__container__name")
-            .classList.remove("variation__container__name--selected");
-        }
-      });
+        let currentVariation = variaciones.filter(
+          (variacion) => variacion._id === idNextVariation
+        );
+
+        setSelectedVariation(currentVariation[0]);
+        setCantidad(1);
+
+        const variations = document.querySelectorAll(
+          ".variation__container__name"
+        );
+        variations.forEach((variation) => {
+          if (variation.id === idNextVariation) {
+            variation
+              .closest(".variation__container__name")
+              .classList.add("variation__container__name--selected");
+          } else {
+            variation
+              .closest(".variation__container__name")
+              .classList.remove("variation__container__name--selected");
+          }
+        });
+      }
     },
     afterChange: function () {},
     responsive: [
@@ -90,20 +120,24 @@ export default function ProductDetailContainer(props) {
           verticalSwiping: false,
           slidesToShow: 1,
           slidesToScroll: 1,
-          infinite: true,
+          fade: true,
+          infinite: variaciones.length > 3,
           dots: false,
           arrows: true,
         },
       },
       {
         breakpoint: 1024,
+        width: 800,
         settings: {
+          centerMode: true,
           arrows: true,
           vertical: false,
+          fade: true,
           verticalSwiping: false,
           slidesToShow: 1,
           slidesToScroll: 1,
-          infinite: true,
+          infinite: variaciones.length > 3,
           dots: false,
         },
       },
@@ -121,9 +155,10 @@ export default function ProductDetailContainer(props) {
         .closest(".variation__container__name")
         .classList.remove("variation__container__name--selected");
     });
-    e.target
-      .closest(".variation__container__name")
-      .classList.add("variation__container__name--selected");
+
+    // e.target
+    //   .closest(".variation__container__name")
+    //   .classList.add("variation__container__name--selected");
 
     setSelectedVariation(
       variaciones.filter((variacion) => variacion._id === variation._id)[0]
@@ -133,7 +168,6 @@ export default function ProductDetailContainer(props) {
       .querySelector(`[id='${variation._id}']`)
       .closest(".slick-slide")
       .getAttribute("data-index");
-    console.log(sliderIndex);
 
     sliderRef.current.slickGoTo(sliderIndex);
 
@@ -171,101 +205,111 @@ export default function ProductDetailContainer(props) {
 
   return (
     <>
-      {loading ? (
-        <div>Cargando...</div>
-      ) : (
-        <div className="container container-fdp">
-          <CartContainer /> {/* //PONER ESTO EN LA HOME */}
-          <div className="flex-responsive">
-            <h2 className="title-mobile">{`${product.nombre} ${selectedVariation.nombre}`}</h2>
-            <div className="col-images">
-              <div className="slider-container">
-                <Slider {...sliderSettings} ref={sliderRef}>
-                  {variaciones.map((variacion) => {
-                    return (
-                      <img
-                        className="slider-image"
-                        key={variacion._id + 2}
-                        id={variacion._id}
-                        alt={variacion.name}
-                        src={`data:image/${variacion.image.contentType};base64,${variacion.image.data}`}
-                      />
-                    );
-                  })}
-                </Slider>
-              </div>
-              <div className="image-principal">
-                <img
-                  alt={selectedVariation.name}
-                  src={`data:image/${selectedVariation.image.contentType};base64,${selectedVariation.image.data}`}
-                />
-              </div>
-            </div>
-
-            <div className="col-buy-data">
-              <h2 className="title-desktop">{`${product.nombre} ${selectedVariation.nombre}`}</h2>
-              <CurrencyFormat
-                className="price"
-                value={selectedVariation.precio}
-                thousandSeparator="."
-                decimalSeparator=","
-                displayType={"text"}
-                prefix={"$"}
-              ></CurrencyFormat>
-              {/* <h3 className="price">${selectedVariation.precio}</h3> */}
-              <div className="cant-variation">
-                <div className="selection">
-                  <h4>Cantidad:</h4>
-                  <ProductCount onAddCantidad={handleCantidad} />
-                </div>
-                <div className="variation">
-                  <h4>Edición:</h4>
-                  <div className="variation__container">
+      {console.log(loading)}
+      <div className={loading ? "not-hidden" : "hidden"}>
+        <ProgressBar animated now={porcentaje} />
+      </div>
+      <div className="container container-fdp">
+        {loading ? (
+          <div>Cargando...</div>
+        ) : (
+          <>
+            <CartContainer /> {/* //PONER ESTO EN LA HOME */}
+            <div className="flex-responsive">
+              <h2 className="title-mobile">{`${product.nombre} ${selectedVariation.nombre}`}</h2>
+              <div className="col-images">
+                <div className="slider-container">
+                  <Slider {...sliderSettings} ref={sliderRef}>
                     {variaciones.map((variacion) => {
                       return (
-                        <div
-                          className="variation__container__name"
-                          key={`var${variacion._id}`}
+                        <img
+                          className="slider-image"
+                          key={variacion._id + 2}
+                          id={variacion._id}
+                          alt={variacion.name}
+                          src={`data:image/${variacion.image.contentType};base64,${variacion.image.data}`}
                           onClick={(e) => handleVariation(e, variacion)}
-                          id={`${variacion._id}`}
-                        >
-                          <p>{variacion.nombre}</p>
-                        </div>
+                        />
                       );
                     })}
-                  </div>
+                  </Slider>
+                </div>
+                <div className="image-principal">
+                  <img
+                    alt={selectedVariation.name}
+                    src={`data:image/${selectedVariation.image.contentType};base64,${selectedVariation.image.data}`}
+                  />
                 </div>
               </div>
-              <div className="distance">
+
+              <div className="col-buy-data">
+                <h2 className="title-desktop">{`${product.nombre} ${selectedVariation.nombre}`}</h2>
+                <CurrencyFormat
+                  className="price"
+                  value={selectedVariation.precio}
+                  thousandSeparator="."
+                  decimalSeparator=","
+                  displayType={"text"}
+                  prefix={"$"}
+                ></CurrencyFormat>
+                {/* <h3 className="price">${selectedVariation.precio}</h3> */}
+                <div className="cant-variation">
+                  <div className="selection">
+                    <h4>Cantidad:</h4>
+                    <ProductCount
+                      onAddCantidad={handleCantidad}
+                      cantidad={cantidad}
+                    />
+                  </div>
+                  <div className="variation">
+                    <h4>Edición:</h4>
+                    <div className="variation__container">
+                      {variaciones.map((variacion) => {
+                        return (
+                          <div
+                            className="variation__container__name"
+                            key={`var${variacion._id}`}
+                            onClick={(e) => handleVariation(e, variacion)}
+                            id={`${variacion._id}`}
+                          >
+                            <p>{variacion.nombre}</p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+                {/* <div className="distance">
                 <input type="text" />
                 <button></button>
-              </div>
-              <div className="buttons">
-                <button
-                  className="buyButton"
-                  //handleEvent={handleAddCart}
-                  //cant={cant}
-                  //disabled={cant === 0}
-                >
-                  Comprar
-                </button>
-                <button
-                  className="cartButton"
-                  onClick={handleAddCart}
-                  // cant={cant}
-                  // disabled={cant === 0}
-                >
-                  Añadir al carrito
-                </button>
+              </div> */}
+                <div className="buttons">
+                  <button
+                    className="buyButton"
+                    //handleEvent={handleAddCart}
+                    //cant={cant}
+                    disabled={cantidad === 0}
+                  >
+                    Comprar
+                  </button>
+                  <button
+                    className="cartButton"
+                    onClick={handleAddCart}
+                    // cant={cant}
+                    disabled={cantidad === 0}
+                  >
+                    Añadir al carrito
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="description">
-            <h3>Descripción</h3>
-            <p>{product.descripcion}</p>
-          </div>
-        </div>
-      )}
+            <div className="description">
+              <h3>Descripción</h3>
+              <p>{product.descripcion}</p>
+            </div>
+          </>
+        )}
+      </div>
     </>
   );
 }

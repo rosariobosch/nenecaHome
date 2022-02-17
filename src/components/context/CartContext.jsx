@@ -9,11 +9,20 @@ const CartState = (props) => {
   // const notyf = new Notyf();
 
   const addProduct = ({ id, precio, cantidad, image, nombre, variacion }) => {
+    console.log(precio * cantidad);
     let productInCart = isInCart(id);
     if (!productInCart) {
       setProducts((productsBefore) => [
         ...productsBefore,
-        { id, precio, cantidad, image, nombre, variacion },
+        {
+          id,
+          precio,
+          precioTotal: precio * cantidad,
+          cantidad,
+          image,
+          nombre,
+          variacion,
+        },
       ]);
       setTotalPrice((prev) => prev + precio * cantidad);
       // notyf.open({
