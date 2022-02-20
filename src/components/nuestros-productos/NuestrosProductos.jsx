@@ -84,25 +84,29 @@ const NuestrosProductos = () => {
         ) : (
             <>
                 <div className='filtros'>
-                    <button>Todo</button>
+                    <button>Todos</button>
+                    {productos.map((element) => {
+                        return <button>{element.categoria}</button>
+                    })}
                 </div>
             <section className='productos-container'>
-            {productos && productos.map((element) => {
-              let name = element.nombre
-              return element.variaciones.map((element) => {
-                return <ProductCard 
-                title={name + ' ' + element.nombre}
-                subtitle={element.descripcion}
-                price={element.precio}
-                img={element.image}
-                key={element._id} />
-              })
-            })}
+ 
+                {productos && productos.map((element) => {
+                let name = element.nombre
+                let description = element.descripcion
+                return element.variaciones.map((element) => {
+                    return <ProductCard 
+                    title={name + ' ' + element.nombre}
+                    subtitle={description}
+                    price={element.precio}
+                    img={element.image}
+                    key={element._id} />
+                })
+                })}
             </section>
             </>
         )
     )
-
 }
 
 export default NuestrosProductos

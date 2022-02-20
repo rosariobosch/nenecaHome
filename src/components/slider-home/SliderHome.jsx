@@ -53,6 +53,7 @@ const SliderHome = () => {
             {productos && productos.map((element) => {
               let name = element.nombre
               return element.variaciones.map((element) => {
+                // console.log(element.image)
                 return <ProductCard 
                 title={name + ' ' + element.nombre}
                 subtitle={element.descripcion}

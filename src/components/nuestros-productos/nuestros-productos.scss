@@ -28,8 +28,21 @@
 
 .filtros {
     margin: 15px;
+    button {
+        text-transform: uppercase;
+
+        &:first-of-type {
+            font-weight: 500;
+        }
+        margin: 10px;
+    }
 }
 
 .productos-container {
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    div {
+        max-width: 20%;
+    }
 }
