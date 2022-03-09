@@ -13,12 +13,12 @@ export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* FALTA NOT FOUND */}
         <Route exact path="/nosotras" element={<AboutUs />} />
         <Route path="/producto/:id" element={<ProductDetailContainer />} />
         <Route exact path="/cart" component={Cart} />
         {/* <Route path="*" element={<Footer />} /> */}
         <Route exact path="/pedidos" element={<OrdersContainer />} />
-        <Route path="*" element={<Footer />} />
         {/* <Route exact path="/nosotras" element={<AboutUs />} /> */}
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/" element={<Home />} />
